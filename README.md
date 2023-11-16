@@ -1,4 +1,4 @@
-### Cluster-FRUC (Cluster FRiendly Unattended Companion)
+### Cluster-FRUC (Cluster-FRiendly Unattended Companion)
 
 This tool was designed to help with submitting large numbers of Quantum
 ESPRESSO input files to HPCs. 
