@@ -20,7 +20,7 @@ In order to use the Cluster-FRUC, the following changes must be made.
    -change TWALLTIME to match walltime limit for that computer
 
 Examples:
-Cedar and Graham:
+```Cedar and Graham:
 #SBATCH -t 14-00:00 
 #SBATCH -J qe
 #SBATCH --account=ACCOUNT-ID
@@ -28,16 +28,16 @@ Cedar and Graham:
 #SBATCH -n 16
 #SBATCH --mem=14Gb
 #SBATCH -oe /dev/null
-
-Niagara:
+```
+```Niagara:
 #SBATCH -t 24:00 
 #SBATCH -J qe
 #SBATCH -N 2
 #SBATCH -n 80
 #SBATCH --mem=14Gb
 #SBATCH -oe /dev/null
-
-Orcinus:
+```
+```Orcinus:
 #PBS -S /bin/bash
 #PBS -j eo
 #PBS -e /dev/null
@@ -46,7 +46,7 @@ Orcinus:
 #PBS -l walltime=240:00:00,mem=20GB,nodes=1:ppn=4
 #PBS -m n
 #PBS -V
-
+```
 
 
 2) In gen_sub.sh
@@ -55,19 +55,19 @@ Orcinus:
 
 
 Cedar and Graham:
-module load quantumespresso/6.1
-
+```module load quantumespresso/6.1
+```
 Niagara:
-module load CCEnv
+```module load CCEnv
 
 module load nixpkgs/16.09
 module load intel/2016.4
 module load openmpi/2.1.1 
 module load quantumespresso/6.1   
-
+```
 Orcinus:
-module load espresso/6.0
-
+```module load espresso/6.0
+```
 
 ### How it works:
 
