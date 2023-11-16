@@ -1,15 +1,4 @@
-### Cluster-FRUC (Cluster-FRiendly Unattended Companion)
-
-This tool was designed to help with submitting large numbers of Quantum
-ESPRESSO input files to HPCs. 
-
-This package include:
-- run.sub - personal submission system
-- gen_sub.sh - generates submission files
-- janitor.sh - cleans up dead jobs and reports current stats
-- pwout2in.awk - creates new inputs from old outputs
-- refresh.sh - under development
-
+## Cluster-FRUC (Cluster-FRiendly Unattended Companion)
 
 ### How to set up
 In order to use the Cluster-FRUC, the following changes must be made.
