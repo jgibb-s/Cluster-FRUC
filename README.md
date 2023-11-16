@@ -20,7 +20,8 @@ In order to use the Cluster-FRUC, the following changes must be made.
    -change TWALLTIME to match walltime limit for that computer
 
 Examples:
-```Cedar and Graham:
+Cedar and Graham:
+```
 #SBATCH -t 14-00:00 
 #SBATCH -J qe
 #SBATCH --account=ACCOUNT-ID
@@ -29,7 +30,8 @@ Examples:
 #SBATCH --mem=14Gb
 #SBATCH -oe /dev/null
 ```
-```Niagara:
+Niagara:
+```
 #SBATCH -t 24:00 
 #SBATCH -J qe
 #SBATCH -N 2
@@ -37,7 +39,8 @@ Examples:
 #SBATCH --mem=14Gb
 #SBATCH -oe /dev/null
 ```
-```Orcinus:
+Orcinus:
+```
 #PBS -S /bin/bash
 #PBS -j eo
 #PBS -e /dev/null
@@ -50,15 +53,17 @@ Examples:
 
 
 2) In gen_sub.sh
-   -comment out anything labelled not relevant to the computer
-   -Double check directories INDIR, COMPDIR, SUBDIR. LOGDIR
+   - comment out anything labelled not relevant to the computer
+   - Double check directories INDIR, COMPDIR, SUBDIR. LOGDIR
 
 
 Cedar and Graham:
-```module load quantumespresso/6.1
+```
+module load quantumespresso/6.1
 ```
 Niagara:
-```module load CCEnv
+```
+module load CCEnv
 
 module load nixpkgs/16.09
 module load intel/2016.4
@@ -66,7 +71,8 @@ module load openmpi/2.1.1
 module load quantumespresso/6.1   
 ```
 Orcinus:
-```module load espresso/6.0
+```
+module load espresso/6.0
 ```
 
 ### How it works:
@@ -77,16 +83,16 @@ care of the rest, provided run.sub and sub_gen.sh have been properly modified.
 
 The submission system itself is essentailly a personal job scheduler. It works
 as follows:
--Executing run.sub will also execute sub_gen.sh if it hasn't already been done
+- Executing run.sub will also execute sub_gen.sh if it hasn't already been done
 
--sub_gen.sh does the following:
-    -creates sub_dir/, in which it will generate submission files for every input
+- sub_gen.sh does the following:
+    - creates sub_dir/, in which it will generate submission files for every input
     file in input/, and logs/, where it will generate the job.log file, which logs
     every job as it starts and its relevant info
-    -it will also create the file my.jobs, which lists the location of every sub file
+    - it will also create the file my.jobs, which lists the location of every sub file
     created, which is then used by run.sub to run the jobs
 
--the sub files created by sub_gen.sh have VERY basic error handling, in that they
+- the sub files created by sub_gen.sh have VERY basic error handling, in that they
 first check to see if the job has already been completed, if it hasn't it will run
 the job, after which it will check to see if the job was successfully completed. If
 it was successful, it will copy the output to comp/ and remove all temp files
@@ -95,16 +101,16 @@ due to a missing upf, it records the missing upf to logs/upf.log. If the job fai
 any other reason, it runs pwout2in.awk to create a new input file, *-adj.scf.in, with
 the last geometry before the job crashed and then adds the new input to my.jobs
 
--run.sub works by popping the first sub file off the top of my.jobs and running whatever
+- run.sub works by popping the first sub file off the top of my.jobs and running whatever
 is contained by that file. sub_gen.sh is currently set up to run Quantum Espresso jobs,
 but can be modified to run virtually any other program
 
--run.sub was written to avoid race conditions, so multiple instances can be run in tandem
+- run.sub was written to avoid race conditions, so multiple instances can be run in tandem
 
 
 
 
 ToDo:
--rsync
--remake all pseudopotentials from pslibrary to include broader types
+- rsync completed files
+- remake all pseudopotentials from pslibrary to include broader types
 	
