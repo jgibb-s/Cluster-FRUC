@@ -3,25 +3,15 @@
 This tool was designed to help with submitting large numbers of Quantum
 ESPRESSO input files to HPCs. 
 
-VERSION 3.0
-
-This file should accompany:
-
-run.sub - personal submission system
-gen_sub.sh - generates submission files
-janitor.sh - cleans up dead jobs and reports current stats
-pwout2in.awk - creates new inputs from old outputs
-refresh.sh - under development
-
-input/
-comp/
-pseudo/
+This package include:
+- run.sub - personal submission system
+- gen_sub.sh - generates submission files
+- janitor.sh - cleans up dead jobs and reports current stats
+- pwout2in.awk - creates new inputs from old outputs
+- refresh.sh - under development
 
 
-
-
-
-##############################HOW TO SETUP###################################
+### How to set up
 In order to use the Cluster-FRUC, the following changes must be made.
 
 1) In run.sub:
@@ -30,7 +20,7 @@ In order to use the Cluster-FRUC, the following changes must be made.
    -change TWALLTIME to match walltime limit for that computer
 
 Examples:
-#################Cedar and Graham####################
+Cedar and Graham:
 #SBATCH -t 14-00:00 
 #SBATCH -J qe
 #SBATCH --account=ACCOUNT-ID
@@ -39,7 +29,7 @@ Examples:
 #SBATCH --mem=14Gb
 #SBATCH -oe /dev/null
 
-##################Niagara############################
+Niagara:
 #SBATCH -t 24:00 
 #SBATCH -J qe
 #SBATCH -N 2
@@ -47,7 +37,7 @@ Examples:
 #SBATCH --mem=14Gb
 #SBATCH -oe /dev/null
 
-#####################ORCINUS#########################
+Orcinus:
 #PBS -S /bin/bash
 #PBS -j eo
 #PBS -e /dev/null
@@ -64,10 +54,10 @@ Examples:
    -Double check directories INDIR, COMPDIR, SUBDIR. LOGDIR
 
 
-#################Cedar and Graham####################
+Cedar and Graham:
 module load quantumespresso/6.1
 
-##################Niagara############################
+Niagara:
 module load CCEnv
 
 module load nixpkgs/16.09
@@ -75,14 +65,11 @@ module load intel/2016.4
 module load openmpi/2.1.1 
 module load quantumespresso/6.1   
 
-##################Orcinus############################
+Orcinus:
 module load espresso/6.0
 
 
-
-
-
-How it works:
+### How it works:
 
 Cluster-FRUC is set up to work out of whatever directory it's unpacked into.
 Ideally, you should be able to just execute (or submit) run.sub, which will take
