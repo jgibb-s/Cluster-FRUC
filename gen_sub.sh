@@ -7,10 +7,15 @@ COMPDIR="${HOME}/cluster_jobs/comp"
 SUBDIR="${HOME}/cluster_jobs/sub_dir"
 LOGDIR="${HOME}/cluster_jobs/logs"
 
+if [ ! -d $INDIR ] ; then
+    mkdir $INDIR
+fi
+if [ ! -d $COMPDIR ] ; then
+    mkdir $COMPDIR
+fi
 if [ ! -d $SUBDIR ] ; then
     mkdir $SUBDIR
 fi
-
 if [ ! -d $LOGDIR ] ; then
     mkdir $LOGDIR
 fi
